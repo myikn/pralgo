@@ -6,9 +6,13 @@ result = 0
 while N != 0:
 
     N -= 1
-
+    
+    # 1
+    if r < 2 ** N and c < 2 ** N:
+        continue
+        
     # 2
-    if r < 2 ** N <= c:
+    elif r < 2 ** N <= c:
         result += 2 ** (2 * N)
         c -= 2 ** N
 
