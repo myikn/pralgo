@@ -1,9 +1,17 @@
 import sys
 
+def gcd(a, b):
+    while b:
+        a, b = b, a % b
+    return a
+
+def lcm(a, b):
+    return (a * b) // gcd(a, b)
+
+
 T = int(input())
 for _ in range(T):
     M, N, x, y = map(int, input().split())
-    tmp = x
 
     if M == 1 or N == 1:
         if M == 1:
@@ -13,10 +21,12 @@ for _ in range(T):
             print(-1 if y > 1 else x)
 
     else:
-        flag = 0
-        while tmp <= M * N:
-            if (tmp - x) % M == 0 and (tmp - y) % N == 0:
-                flag = 1
+        max_year = lcm(M, N)
+        for i in range(max_year // M):
+            year = i * M + x
+            ny = N if year % N == 0 else year % N
+            if ny == y:
+                print(year)
                 break
-            tmp += M
-        print(tmp if flag else -1)
+        else:
+            print(-1)
