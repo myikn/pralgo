@@ -11,10 +11,8 @@ for _ in range(T):
         mbti = list(sys.stdin.readline().split())
         result = 13
         for i in range(N):
-            for j in range(N):
-                for k in range(N):
-                    if i == j or j == k or i == k:
-                        continue
+            for j in range(i + 1, N):
+                for k in range(j + 1, N):
                     tmp = 0
                     for x in range(4):
                         if mbti[i][x] != mbti[j][x]: tmp += 1
